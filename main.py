@@ -8,18 +8,8 @@ import sys
 from flask import Flask
 from threading import Thread
 
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "I'm alive"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
-
-def keep_alive():
-    t = Thread(target=run)
-    t.start()
+from keep_alive import keep_alive
+keep_alive()
 
 # Initialize the bot with the command prefix
 intents = discord.Intents.default()
@@ -147,8 +137,6 @@ async def of(ctx, *, username: str):
     # Restart the bot after command execution
     await bot.close()
     os.execv(sys.executable, ['python'] + sys.argv)
-
-keep_alive()
 
 # Retrieve the token from the environment variable
 bot.run(os.getenv("TOKEN"))
