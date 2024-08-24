@@ -102,7 +102,7 @@ async def of(ctx, *, username: str):
     if profile_info:
         reports_to_file = analyze_profile(profile_info)
 
-        result_text = f"**Public Information for {username}:**\n\n"
+        result_text = f"**Public Information for {username}:\n\n"
         result_text += f"Username: {profile_info.get('username', 'N/A')}\n"
         result_text += f"Full Name: {profile_info.get('full_name', 'N/A')}\n"
         result_text += f"Biography: {profile_info.get('biography', 'N/A')}\n"
@@ -129,7 +129,6 @@ async def of(ctx, *, username: str):
         view.add_item(button)
 
         # Send the embed with the button
-        await initial_message.edit(content=f"✅ Analysis completed for {username}.")
         await ctx.send(embed=embed, view=view)
 
     else:
